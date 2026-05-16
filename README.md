@@ -1,17 +1,27 @@
-# 🔑 Secure Login System (Frontend Authentication Interface)
+# 🛡️ AI Cybersecurity Defense Dashboard (Streamlit Engine)
 
-Folder ini berisi subsistem **Gerbang Masuk Autentikasi (Frontend)** yang berfungsi sebagai antarmuka pengguna tempat data interaksi login akan direkam dan dipantau.
+Folder ini merupakan subsistem **Dashboard Pemantauan Utama** yang berfungsi sebagai pusat kendali visual (*Command Center*) untuk mendeteksi serangan siber secara real-time. 
 
-## 🛠️ Spesifikasi Teknologi & Desain
-- **Framework Utama:** **Streamlit** (Python-based framework).
-- **Desain Estetika:** Modifikasi penuh menggunakan injeksi **HTML/CSS** mentah untuk menciptakan tampilan form masuk yang modern, minimalis, dan bernuansa *Dark Theme Tech Studio*.
-- **Task Runner:** Dikonfigurasi menggunakan automasi Node.js (`package.json`) untuk memudahkan eksekusi peluncuran server lokal pada port khusus (`port 3000`).
+## 🛠️ Spesifikasi Teknologi & Desain Antarmuka
+- **Framework Utama:** **Streamlit** (Python-based data application framework).
+- **Desain Estetika:** Kustomisasi visual tingkat lanjut menggunakan injeksi **HTML/CSS** mentah untuk menciptakan tampilan bernuansa *Dark-Mode Cyber Defense Command Center*.
+- **Manajemen Data:** Menggunakan pustaka `pandas` untuk pelacakan riwayat fluktuasi jaringan (*Ingress Velocity*) secara berkala.
 
-## 📁 Berkas-Berkas Komponen
-- `app.py`: Berkas kode utama yang mengatur tampilan form input kredensial pengguna, kustomisasi gaya CSS, dan respons visual status masuk.
-- `package.json`: Memuat skrip automasi untuk menjalankan server Streamlit serta dependensi pendukung seperti SDK Google GenAI.
+## 📁 Penjelasan Berkas Utama
+- `app.py`: Berkas kode utama yang memuat konfigurasi halaman, gaya antarmuka, logika metrik, dan grafik pemantauan real-time.
+- `requirements.txt`: Daftar pustaka Python wajib (mengandalkan `streamlit` dan `pandas`).
 
-## ⚙️ Skenario Pengujian Sistem (Live Attack Demo)
-Subsistem ini dirancang sebagai wadah simulasi pengujian untuk menunjukkan kontras antara perilaku pengguna normal dan serangan siber secara langsung:
-1. **Skenario Login Biasa (Manusia):** Pengguna memasukkan kredensial secara manual dengan laju ketukan rendah (`<=10 percobaan / <3 detik`). Pola interaksi ini akan dikategorikan sebagai aktivitas **NORMAL**.
-2. **Skenario Serangan (Brute Force):** Gerbang login sengaja akan dibanjiri oleh percobaan masuk secara masif dan cepat dalam jendela waktu singkat (`10+ percobaan / <3 detik`). Pola lonjakan aktivitas ini akan diklasifikasikan sebagai **ANOMALI** (Serangan Brute Force) yang nantinya diteruskan ke pipa data analisis Google AI Studio dan memicu output fisik **Arduino**.
+## ⚙️ Mekanisme & Logika Deteksi AI (Rate Limiting)
+Sistem ini memantau aktivitas berdasarkan algoritma *Rate Limiting* yang dirancang untuk mendeteksi serangan klasifikasi perilaku login secara real-time:
+1. **Kategori NORMAL:** Jika frekuensi login **kurang dari atau sama dengan 10 kali percobaan** dalam kurun waktu **di bawah 3 detik** (`<=10 / <3s`).
+2. **Kategori ANOMALI (Brute Force):** Jika terdeteksi aktivitas mencurigakan berupa **lebih dari 10 kali percobaan** dalam kurun waktu **di bawah 3 detik** (`10+ / <3s`). Sistem akan langsung melabelinya sebagai serangan Siber (*Cyber Attack*), memicu status **SYSTEM ATTACK**, mengubah warna indikator menjadi merah menyala, menurunkan skor kesehatan global, dan menampilkan bar peringatan bahaya (*Status Alert Bar*).
+
+## 📡 Rencana Integrasi Tahap Akhir (Google AI Studio & Arduino)
+Modul simulasi data ini akan digantikan dengan pipa komunikasi data riil yang terintegrasi penuh:
+1. **Analisis AI via Google AI Studio:** Dashboard akan membaca status deteksi keamanan cerdas yang diproses oleh AI Engine luar menggunakan pemrosesan bahasa alami dari **Gemini API (Google AI Studio)** untuk mengenali perilaku serangan *Brute Force*.
+2. **Koneksi Arduino (Hardware Trigger):** Kode di `app.py` dashboard ini akan diintegrasikan dengan pustaka `pyserial`. Begitu Gemini AI mengembalikan keputusan status `ATTACK/ANOMALI`, Python akan langsung menembakkan sinyal byte `'A'` lewat kabel USB untuk mengaktifkan **LED merah dan alarm Buzzer fisik** pada papan **Arduino**.
+
+## 🕹️ Skenario Demonstrasi Serangan (Live Demo Plan)
+Proyek ini dipersiapkan untuk mendemonstrasikan dua skenario perilaku interaksi pada Gerbang Login secara kontras:
+1. **Skenario Manusia (Normal Behavior):** Interaksi login manual oleh pengguna dengan laju request rendah, menghasilkan status **SYSTEM NORMAL** pada dashboard.
+2. **Skenario Serangan (Brute Force Simulation):** Simulasi serangan siber menggunakan script otomatisasi yang membanjiri gerbang login dengan laju ketukan tinggi (`10+ request / <3 detik`). Pola anomali ini akan memicu alarm pada dashboard dan mengaktifkan output fisik **Arduino** secara instan.
